@@ -15,7 +15,7 @@ export default [
     },
     {
         path: '/soft',
-        component: Screen2
+        component: Screen3
     },
     {
         path: '/thank-you',

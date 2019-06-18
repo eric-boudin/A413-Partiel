@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="soft col mb-4" v-for="soft in softs" :key="soft.id">
-                <button class="btn btn-light shadow-sm" @click.prevent="setSoft(soft.id)>{{ soft.name }}</button>
+                <button class="btn btn-light shadow-sm" @click.prevent="setSoft(soft.id)">{{ soft.name }}</button>
             </div>
         </div>
     </div>
@@ -17,8 +17,8 @@
 </template>
 <script>
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
+    
     mounted() {
         this.$store.dispatch('loadSofts')
     },
@@ -30,34 +30,18 @@ export default {
     methods: {
         setSoft(soft) {
             this.$store.commit('setSoft', soft)
-            this.$router.push('/soft')
+            this.goToThankYou()
         },
         goToThankYou() {
             this.$store.dispatch('sendToRobot').then(res => {
                 console.log('go to thank-you')
+                this.$router.push('/thank-you')
             }, err => {
                 console.debug(err)
             })
         }
     }
 }
-
-/*export default {
-    data() {
-        return {
-            softs: [{"id":1,"name":"Coca-Cola"},{"id":2,"name":"Eau Plate"},{"id":3,"name":"Jus d'Orange"},{"id":4,"name":"Jus de Pomme"},{"id":5,"name":"Jus d'Ananas"},{"id":6,"name":"Eau Gazeuze"},{"id":7,"name":"Red Bull"},{"id":8,"name":"Orangina"}]
-        }
-    },
-    methods: {
-        goToThankYou() {
-            this.$store.dispatch('sendToRobot').then(res => {
-                console.log('go to thank-you')
-            }, err => {
-                console.debug(err)
-            })
-        }
-    }
-}*/
 </script>
 <style lang="scss">
 #screen3 {
